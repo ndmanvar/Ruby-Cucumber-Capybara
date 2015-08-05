@@ -20,19 +20,11 @@ Around do |scenario, block|
 end
 
 Before do | scenario |
-  desired_capabilities = {
-    :version => ENV['version'],
-    :browserName => ENV['browserName'],
-    :platform => ENV['platform']
-  }
-  desired_capabilities[:name] = '123'
-
   Capybara.register_driver :selenium do |app|
     capabilities = {
       :version => ENV['version'],
       :browserName => ENV['browserName'],
-      :platform => ENV['platform'],
-      :name => "#{scenario.feature.name}"
+      :platform => ENV['platform']
     }
 
     url = "http://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:80/wd/hub".strip
